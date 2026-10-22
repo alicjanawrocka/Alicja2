@@ -36,12 +36,6 @@ jobs:
           path: artifacts/best_model.joblib
           if-no-files-found: error
 
-      - name: Upload trained model artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: best-regression-model
-          path: artifacts/best_model.joblib
-
       - name: Upload evaluation artifact
         uses: actions/upload-artifact@v4
         with:
