@@ -96,6 +96,9 @@ def train_best_model(
         )
     }
 
+    with open(artifact_path.parent / "metrics.json", "w") as f:
+        json.dump(metrics, f, indent=4)
+
     print(
         "Selected parameters: "
         f"{json.dumps(artifact['parameters'], sort_keys=True)} "
