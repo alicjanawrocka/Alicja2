@@ -1,8 +1,11 @@
 name: MKU Data Science CI
 
 on:
-  push:
-  pull_request:
+  workflow_run:
+    workflows:
+      - CI
+    types:
+      - completed
 
 jobs:
   auto-run:
