@@ -90,6 +90,12 @@ def train_best_model(
     artifact_path.parent.mkdir(parents=True, exist_ok=True)
     joblib.dump(artifact, artifact_path)
 
+    metrics = {
+        "test_mean_squared_error": float(
+            best_experiment["test_mean_squared_error"]
+        )
+    }
+
     print(
         "Selected parameters: "
         f"{json.dumps(artifact['parameters'], sort_keys=True)} "
