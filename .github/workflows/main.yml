@@ -1,0 +1,12 @@
+name: Model Evaluation
+
+on:
+  workflow_run:
+    workflows:
+      - Model Training Artifact
+    types:
+      - completed
+
+jobs:
+  evaluate:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
