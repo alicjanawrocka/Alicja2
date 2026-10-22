@@ -1,4 +1,4 @@
-name: Model Evaluation
+name: Model Evaluation Artifact
 
 on:
   workflow_run:
@@ -10,3 +10,25 @@ on:
 jobs:
   evaluate:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: python -m pip install -r requirements.txt
+
+      - name: Run model evaluation
+        run: python -m model_training.evaluate_model
+
+      - name: Upload evaluation artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: model-evaluation
+          path: artifacts/model_metrics.json
